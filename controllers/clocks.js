@@ -73,8 +73,8 @@ clocks.put('/:id', (req, res) => {
           type: req.body.type
         }, {
           where: { id: req.params.id }
-        }).then(result => {
-          res.json(result);
+        }).then(clock => {
+          res.redirect(`/clocks/${req.params.id}`);
         });
       }
     });
@@ -88,7 +88,7 @@ clocks.delete('/:id', (req, res) => {
     if (!result) {
       return res.status(400).send('Nincs ilyen óra!')
     } else {
-      res.json(result);
+      res.redirect(`/clocks`);
     }
   });
 });

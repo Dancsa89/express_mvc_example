@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-8">
       <div>
-        <form>
+        <form method="POST" action="/clocks/{{clock.id}}?_method=PUT">
           <div class="form-group">
             <label for="manufacturer">Manufacturer</label>
             <input type="text" class="form-control" name="manufacturer" value="{{clock.manufacturer}}" />
@@ -21,8 +21,8 @@
         <label for="type">Type</label>
         <input type="text" class="form-control" name="type" value="{{clock.type}}" />
       </div>
+      <input class="btn btn-warning" type="submit" value="Save"/>
       </form>
-      <button type="button" class="btn btn-warning">Save</button>
     </div>
   </div>
 </div>
