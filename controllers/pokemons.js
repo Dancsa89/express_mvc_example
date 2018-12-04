@@ -72,7 +72,7 @@ pokemons.put('/:id', (req, res) => {
           cp: req.body.cp
         }, {
           where: { id: req.params.id }
-        }).then(pokemons => {
+        }).then(pokemon => {
           res.redirect(`/pokemons/${req.params.id}`);
         });
       }

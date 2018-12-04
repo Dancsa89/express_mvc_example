@@ -14,11 +14,11 @@ videogames.get('/', (req, res) => {
 // Show
 
 videogames.get('/:id/', (req, res) => {
-  models.Videogame.findById(req.params.id).then(videogames => {
-    if (videogames === null) {
+  models.Videogame.findById(req.params.id).then(videogame => {
+    if (videogame === null) {
       res.status(400).send('Nincs ilyen Pokemon!');
     } else {
-      res.locals.videogames = videogames;
+      res.locals.videogame = videogame;
       res.render('videogames/show.handlebars');
     }
   });
@@ -27,11 +27,11 @@ videogames.get('/:id/', (req, res) => {
 // Edit
 
 videogames.get('/:id/edit', (req, res) => {
-  models.Videogame.findById(req.params.id).then(videogames => {
-    if (videogames === null) {
+  models.Videogame.findById(req.params.id).then(videogame => {
+    if (videogame === null) {
       res.status(400).send('Nincs ilyen Pokemon!');
     } else {
-      res.locals.videogames = videogames;
+      res.locals.videogame = videogame;
       res.render('videogames/edit.handlebars');
     }
   });
@@ -72,8 +72,8 @@ videogames.put('/:id', (req, res) => {
           type: req.body.type
         }, {
           where: { id: req.params.id }
-        }).then(result => {
-          res.json(result);
+        }).then(videogame => {
+          res.redirect(`/videogames/${req.params.id}`);
         });
       }
     });

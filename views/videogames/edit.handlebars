@@ -7,22 +7,22 @@
   <div class="row">
     <div class="col-8">
       <div>
-        <form>
+        <form method="POST" action="/videogames/{{videogame.id}}?_method=PUT">
           <div class="form-group">
             <label for="distributor">Distributor</label>
-            <input type="text" class="form-control" name="distributor" value="{{videogames.distributor}}" />
+            <input type="text" class="form-control" name="distributor" value="{{videogame.distributor}}" />
           </div>
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" value="{{videogames.name}}" />
+            <input type="text" class="form-control" name="name" value="{{videogame.name}}" />
           </div>
       </div>
       <div class="form-group">
         <label for="type">Type</label>
-        <input type="text" class="form-control" name="type" value="{{videogames.type}}" />
+        <input type="text" class="form-control" name="type" value="{{videogame.type}}" />
       </div>
+      <input class="btn btn-warning" type="submit" value="Save"/>
       </form>
-      <button type="button" class="btn btn-warning">Save</button>
     </div>
   </div>
 </div>
