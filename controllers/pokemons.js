@@ -91,7 +91,7 @@ pokemons.delete('/:id', (req, res) => {
     if (!result) {
       return res.status(400).send('Nincs ilyen Pokemon!');
     } else {
-      res.json(result);
+      res.redirect(`/pokemons`);
     }
   });
 });

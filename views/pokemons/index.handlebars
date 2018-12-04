@@ -8,7 +8,9 @@
       <td>{{cp}}</td>
       <td><a href="/pokemons/{{id}}" class="btn btn-primary">Show</a></td>
       <td><a href="/pokemons/{{id}}/edit" class="btn btn-secondary">Edit</a></td>
-      <td><a href="/pokemons/{{id}}?_method=DELETE" class="btn btn-danger">Delete</a></td>
+      <form method="POST" action="/pokemons/{{id}}?_method=DELETE">
+      <td><input class="btn btn-danger" type="submit" value="Delete"/></td>
+      </form>
     </tr>
     {{/each}}    
     <td><a href="/pokemons" class="btn btn-success">New</a></td>
