@@ -27,11 +27,11 @@ pokemons.get('/:id/', (req, res) => {
 // Edit
 
 pokemons.get('/:id/edit', (req, res) => {
-  models.Pokemon.findById(req.params.id).then(pokemons => {
-    if (pokemons === null) {
+  models.Pokemon.findById(req.params.id).then(pokemon => {
+    if (pokemon === null) {
       res.status(400).send('Nincs ilyen Pokemon!');
     } else {
-      res.locals.pokemons = pokemons;
+      res.locals.pokemon = pokemon;
       res.render('pokemons/edit.handlebars');
     }
   });
@@ -72,13 +72,17 @@ pokemons.put('/:id', (req, res) => {
           cp: req.body.cp
         }, {
           where: { id: req.params.id }
-        }).then(result => {
-          res.json(result);
+        }).then(pokemons => {
+          res.redirect(`/pokemons/${req.params.id}`);
         });
       }
     });
   });
 });
+
+/* pokemons.put('/:id', (req, res) => {
+  return res.redirect(`/pokemons/${req.params.id}`);
+}); */
 
 // Delete
 
