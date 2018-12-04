@@ -8,7 +8,9 @@
       <td>{{type}}</td>
       <td><a href="/videogames/{{id}}" class="btn btn-primary">Show</a></td>
       <td><a href="/videogames/{{id}}/edit" class="btn btn-secondary">Edit</a></td>
-      <td><a href="/videogames/{{id}}?_method=DELETE" class="btn btn-danger">Delete</a></td>
+       <form method="POST" action="/pokemons/{{id}}?_method=DELETE">
+      <td><input class="btn btn-danger" type="submit" value="Delete"/></td>
+      </form>
     </tr>
     {{/each}}    
     <td><a href="/clocks" class="btn btn-success">New</a></td>
