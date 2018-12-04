@@ -16,6 +16,11 @@ app.use(methodOverride('_method'));
 app.use('/clocks', clocks);
 app.use('/videogames', videogames);
 app.use('/pokemons', pokemons);
+
+app.get('/', (req,res) => {
+  res.render('indexoldal');
+})
+
 app.listen(process.env.PORT, () => {
   console.log('Listen on PORT 5001');
 });
