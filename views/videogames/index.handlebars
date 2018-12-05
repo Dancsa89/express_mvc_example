@@ -13,6 +13,8 @@
       </form>
     </tr>
     {{/each}}    
-    <td><a href="/clocks" class="btn btn-success">New</a></td>
+    <form method="POST" action="/pokemons/{{id}}?_method=DELETE"></form>
+    <td><a href="/clocks/new.handlebars" class="btn btn-success">New</a></td>
+    </form>
   </tbody>
 </table>

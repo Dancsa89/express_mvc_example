@@ -1,26 +1,27 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2>Create a new Clock</h2>
+      <h2>Create a New Clock</h2>
     </div>
   </div>
   <div class="row">
     <div class="col-8">
       <div>
-        <form>
+        <form method="POST" action="/clocks">
           <div class="form-group">
             <label for="manufacturer">Manufacturer</label>
-            <input type="text" class="form-control" name="manufacturer" value="{{clock.manufacturer}}" />
+            <input type="text" class="form-control" name="manufacturer" value="" />
           </div>
           <div class="form-group">
             <label for="model">Model</label>
-            <input type="text" class="form-control" name="model" value="{{clock.model}}" />
+            <input type="text" class="form-control" name="model" value="" />
           </div>
       </div>
       <div class="form-group">
         <label for="type">Type</label>
-        <input type="text" class="form-control" name="type" value="{{clock.type}}" />
+        <input type="text" class="form-control" name="type" value="" />
       </div>
+      <input class="btn btn-warning" type="submit" value="Save"/>
       </form>
     </div>
   </div>
