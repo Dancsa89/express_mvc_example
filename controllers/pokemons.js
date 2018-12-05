@@ -11,6 +11,12 @@ pokemons.get('/', (req, res) => {
   });
 });
 
+// Index New
+
+pokemons.get('/new', (req, res) => {
+  res.render('pokemons/new.handlebars');
+});
+
 // Show
 
 pokemons.get('/:id/', (req, res) => {
@@ -42,14 +48,15 @@ pokemons.get('/:id/edit', (req, res) => {
 pokemons.post('/', (req, res) => {
   models.Pokemon.findOne({ where: { name: req.body.name } }).then(preResult => {
     if (preResult) {
-      return res.status(400).send('Már van ilyen Pokemon!')
+      return res.status(400).send('Már van ilyen Pokemon!');
     } else {
       models.Pokemon.create({
         type: req.body.type,
         name: req.body.name,
         cp: req.body.cp
-      }).then(result => {
-        res.json(result);
+      }).then(pokemon => {
+        res.locals.pokemon = pokemon;
+        res.redirect('pokemons');
       });
     }
   });
@@ -79,10 +86,6 @@ pokemons.put('/:id', (req, res) => {
     });
   });
 });
-
-/* pokemons.put('/:id', (req, res) => {
-  return res.redirect(`/pokemons/${req.params.id}`);
-}); */
 
 // Delete
 

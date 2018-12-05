@@ -46,13 +46,19 @@ clocks.get('/:id/edit', (req, res) => {
 // Create
 
 clocks.post('/', (req, res) => {
-  models.Clock.create({
-    manufacturer: req.body.manufacturer,
-    model: req.body.model,
-    type: req.body.type
-  }).then(clock => {
-    res.locals.clock = clock;
-    res.redirect('clocks');
+  models.Clock.findOne({ where: { manufacturer: req.body.manufacturer } }).then(preResult => {
+    if (preResult) {
+      return res.status(400).send('Már van ilyen Óra!');
+    } else {
+      models.Clock.create({
+        manufacturer: req.body.manufacturer,
+        model: req.body.model,
+        type: req.body.type
+      }).then(clock => {
+        res.locals.clock = clock;
+        res.redirect('clocks');
+      });
+    }
   });
 });
 
@@ -72,10 +78,10 @@ clocks.put('/:id', (req, res) => {
           model: req.body.model,
           type: req.body.type
         }, {
-          where: { id: req.params.id }
-        }).then(clock => {
-          res.redirect(`/clocks/${req.params.id}`);
-        });
+            where: { id: req.params.id }
+          }).then(clock => {
+            res.redirect(`/clocks/${req.params.id}`);
+          });
       }
     });
   });

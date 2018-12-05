@@ -11,6 +11,12 @@ videogames.get('/', (req, res) => {
   });
 });
 
+// Index New
+
+videogames.get('/new', (req, res) => {
+  res.render('videogames/new.handlebars');
+});
+
 // Show
 
 videogames.get('/:id/', (req, res) => {
@@ -42,14 +48,15 @@ videogames.get('/:id/edit', (req, res) => {
 videogames.post('/', (req, res) => {
   models.Videogame.findOne({ where: { name: req.body.name } }).then(preResult => {
     if (preResult) {
-      return res.status(400).send('Már van ilyen Játék!')
+      return res.status(400).send('Már van ilyen Játék!');
     } else {
       models.Videogame.create({
         distributor: req.body.distributor,
         name: req.body.name,
         type: req.body.type
-      }).then(result => {
-        res.json(result);
+      }).then(videogame => {
+        res.locals.videogame = videogame;
+        res.redirect('videogames');
       });
     }
   });
